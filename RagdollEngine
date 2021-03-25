@@ -1,0 +1,43 @@
+
+--]] GUI STUFF
+local Top = mainUI:AddTab("Ragdoll Engine")
+local MainTab = Top:AddSection("Main", false)
+local AntiRag = MainTab:AddButton("AntiRag", "Anti Ragdoll", false, function()
+--]] Vars
+local char = game:GetService("Players").LocalPlayer.Character --]] Gets The Character
+--]] AntiRag
+char.FirstPerson:Destroy() 
+
+char["Local Ragdoll"]:Destroy() 
+
+char["Controls"]:Destroy() 
+
+for _,brrrr in pairs(char:GetChildren()) do
+
+if brrrr:IsA("BallSocketConstraint") or brrrr:IsA("HingeConstraint") then
+brrrr:Destroy()
+end
+
+end
+
+
+
+end)
+if game.PlaceId == 2041312716 and GamesSupported[2] == "RagdollEngine" and GamesSupported["RagdollData"] == true   then
+
+local AntiRag = MainTab:AddButton("freepush", "Free Push", false, function()
+   
+    
+    local Tool = Instance.new("Tool")
+    Tool.Name = "Push"
+    Tool.Parent = game.Players.LocalPlayer.Backpack
+    Tool.Activated:Connect(function(click)
+
+game:GetService("Players").LocalPlayer.Backpack.Push.PushEvent:FireServer()
+end)
+
+    end
+
+end)
+
+end
